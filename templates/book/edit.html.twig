@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier {{ book.title }} | HandleBook{% endblock %}
+
+{% block body %}
+    <div class="md:grid md:grid-cols-3 md:gap-6">
+        <div class="md:col-span-1">
+            <div class="px-4 sm:px-0">
+                <h1 class="text-2xl font-semibold text-gray-900">Modifier le livre</h1>
+                <p class="mt-1 text-sm text-gray-600">
+                    Modifiez les informations du livre. Tous les champs marqués d'un astérisque (*) sont obligatoires.
+                </p>
+            </div>
+        </div>
+        <div class="mt-5 md:mt-0 md:col-span-2">
+            <div class="shadow sm:rounded-md sm:overflow-hidden">
+                <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                    {{ form_start(form) }}
+                        <div class="grid grid-cols-6 gap-6">
+                            <div class="col-span-6 sm:col-span-4">
+                                {{ form_label(form.title, 'Titre *', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                                {{ form_widget(form.title, {'attr': {'class': 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'}}) }}
+                                {{ form_errors(form.title, {'attr': {'class': 'text-red-500 text-xs mt-1'}}) }}
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-4">
+                                {{ form_label(form.author, 'Auteur *', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                                {{ form_widget(form.author, {'attr': {'class': 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'}}) }}
+                                {{ form_errors(form.author, {'attr': {'class': 'text-red-500 text-xs mt-1'}}) }}
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                {{ form_label(form.publishedAt, 'Date de publication', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                                {{ form_widget(form.publishedAt, {'attr': {'class': 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'}}) }}
+                                {{ form_errors(form.publishedAt, {'attr': {'class': 'text-red-500 text-xs mt-1'}}) }}
+                            </div>
+
+                            <div class="col-span-6 sm:col-span-3">
+                                {{ form_label(form.isbn, 'ISBN', {'label_attr': {'class': 'block text-sm font-medium text-gray-700'}}) }}
+                                {{ form_widget(form.isbn, {'attr': {'class': 'mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'}}) }}
+                                {{ form_errors(form.isbn, {'attr': {'class': 'text-red-500 text-xs mt-1'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex items-center justify-end space-x-3">
+                            <a href="{{ path('app_book_show', {'slug': book.slug}) }}" class="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                Annuler
+                            </a>
+                            {{ form_widget(form.submit, {'attr': {'class': 'bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 inline-flex justify-center text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'}}) }}
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
